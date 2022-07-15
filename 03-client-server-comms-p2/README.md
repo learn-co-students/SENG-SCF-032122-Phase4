@@ -12,7 +12,7 @@
 - [] Add Full CRUD to Ticket
 
 ### Domain
-![domain_2](assets/domain_2.png)
+![domain_2](../02-client-server-comms-p1/assets/domain_2.png)
 
 ### dependencies
 Rails prevents you from deleting resources if other resources depend on them. 
