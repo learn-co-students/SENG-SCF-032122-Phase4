@@ -2,7 +2,16 @@ class User < ApplicationRecord
     has_many :tickets
     has_many :productions, through: :tickets
 
-    # add custom validation :must_have_preferred_email
+    validates :email, uniqueness: true, presence: true
+    validates :name, uniqueness: true, presence: true
+    
+    validate :must_have_preferred_email
+
+    def must_have_preferred_email
+        unless email.match?(/gmail.com|aol.com|hotmail.com|yahoo.com|outlook.com|me.com/)
+            errors.add(:email, "Sorry, please enter an approved email.")
+        end
+    end
 
     # https://guides.rubyonrails.org/active_record_validations.html#custom-methods
 

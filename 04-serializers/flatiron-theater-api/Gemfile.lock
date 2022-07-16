@@ -149,9 +149,11 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-darwin-21
 
 DEPENDENCIES
   active_model_serializers
+  activesupport (~> 6.1)
   byebug
   listen (~> 3.3)
   puma (~> 5.0)

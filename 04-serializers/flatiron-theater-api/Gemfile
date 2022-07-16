@@ -17,7 +17,9 @@ gem 'rack-cors'
 
 #Serializer - FYI this does not come commented out with a new rails app by default, you'll have to get it if you want to use it. here is a nice overview:
 # https://learn.co/lessons/using-active-model-serializer
-# gem 'active_model_serializers'
+gem 'active_model_serializers'
+
+gem "activesupport", "~> 6.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

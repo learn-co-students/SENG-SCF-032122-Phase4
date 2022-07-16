@@ -5,9 +5,10 @@ class UsersController < ApplicationController
     end 
 
     def show
-        user = User.find(params[:id])
+        user = find_user
         render json: user
     end 
+
     def create
         user = User.create!(production_params)
         render json: user, status: :created
@@ -18,6 +19,10 @@ class UsersController < ApplicationController
     def production_params
         params.permit(:name, :email)
     end 
+
+    def find_user
+        User.find(params[:id])
+    end
 
    
 

@@ -58,3 +58,5 @@ Ticket.create(user:u5, production:p1, price:65.00)
 Ticket.create(user:u5, production:p2, price:65.00)
 Ticket.create(user:u6, production:p1, price:65.00)
 Ticket.create(user:u6, production:p2, price:65.00)
+
+puts "Seeding complete!"
