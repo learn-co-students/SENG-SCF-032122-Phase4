@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 
-function Login() {
+function Auth() {
     const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
    
     const [errors, setErrors] = useState([])
@@ -9,11 +10,12 @@ function Login() {
     function onSubmit(e){
         e.preventDefault()
         const user = {
-            username: username,
+            name: username,
+            email,
             password
         }
        
-        fetch(`/login`,{
+        fetch(`/users`,{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify(user)
@@ -21,7 +23,7 @@ function Login() {
         .then(res => res.json())
         .then(json => {
             console.log("success!!", json)
-            if(json.errors) setErrors(json.errors)
+            if(json.errors) setErrors(Object.entries(json.errors))
         })
     }
     return (
@@ -33,16 +35,21 @@ function Login() {
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
         <label>
+         email
+    
+        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </label>
+        <label>
          Password
     
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
        
-        <input type="submit" value="Login!" />
+        <input type="submit" value="Sign up!" />
       </form>
-      {errors?errors.map(e => <div>{e}</div>):null}
+      {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null}
         </>
     )
 }
 
-export default Login;
+export default Auth;

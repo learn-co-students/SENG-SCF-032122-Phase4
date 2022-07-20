@@ -1,101 +1,63 @@
-import { Route, Switch } from 'react-router-dom'
-import {createGlobalStyle} from 'styled-components'
+import { Route, Switch } from "react-router-dom";
+
 import {useEffect, useState} from 'react'
-import Home from './components/Home'
+import ProductionContainer from './components/ProductionContainer'
 import ProductionForm from './components/ProductionForm'
-import EditProductionForm from './components/EditProductionForm'
 import Navigation from './components/Navigation'
 import ProductionDetail from './components/ProductionDetail'
-import UserPage from './components/UserPage'
-import SignUp from './components/Signup'
-import Login from './components/Login'
-import NotFound from './components/NotFound'
+import Auth from './components/Auth'
+import Login from './components/LogIn'
 
 function App() {
   const [productions, setProductions] = useState([])
   const [errors, setErrors] = useState(false)
   const [cart, setCart] = useState([])
 
-
   useEffect(() => {
     fetch('/productions')
-    .then(res => {
-      if(res.ok){
-        res.json().then(setProductions)
-      }else {
-        res.json().then(data => setErrors(data.error))
-      }
-    })
+    .then(res => res.json())
+    .then(setProductions)
   },[])
 
-  const addProduction = (production) => setProductions(current => [...current,production])
-
-  const updateProduction = (updatedProduction) => setProductions(current => {
-    return current.map(production => {
-     if(production.id === updatedProduction.id){
-       return updatedProduction
-     } else {
-       return production
-     }
-    })
-  })
-
-  const deleteProduction = (id) => setProductions(current => current.filter(p => p.id !== id)) 
-
-  const addToCart = (ticket) => setCart(cart => [...cart, ticket])
-  if(errors) return <h1>{errors}</h1>
+  function handlePost(obj){
+      fetch('/productions',{
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify(obj)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.errors){
+          setErrors(data.errors)
+        } else {
+          setProductions([...productions,data])
+        }
+      })
+  }
 
   return (
     <>
-    <GlobalStyle />
     <Navigation cart={cart}/>
-      <Switch>
-
-      <Route  path='/productions/new'>
-        <ProductionForm addProduction={addProduction}/>
-      </Route>
-    {/* TODO make edit component */}
-      <Route  path='/productions/:id/edit'>
-        <EditProductionForm updateProduction={updateProduction}/>
-      </Route>
-     
-      <Route path='/productions/:id'>
-          <ProductionDetail addToCart={addToCart} deleteProduction={deleteProduction}/>
-      </Route>
-
-      <Route path='/users/new'>
-        <SignUp />
-      </Route>
-
-      <Route path='/users/:id'>
-        <UserPage />
-      </Route>
-
-      <Route path='/login'>
-        <Login />
-      </Route>
-
-    
-      <Route exact path='/'>
-        <Home  productions={productions}/>
-      </Route>
-
-      <Route>
-        <NotFound />
-      </Route>
-      
-      </Switch>
-   
+    <Switch>
+    <Route exact path="/">
+      <ProductionContainer productions={productions}/>
+    </Route>
+    <Route exact path="/productions/new">
+      <ProductionForm handlePost={handlePost} errors={errors} />
+    </Route>
+    <Route exact path="/productions/:id">
+        <ProductionDetail cart={cart} setCart={setCart}/>
+    </Route>
+    <Route path="/sign_up">
+          <Auth />
+    </Route>
+    <Route path="/login">
+          <Login />
+    </Route>
+    </Switch>
     </>
-  )
+  );
 }
 
-export default App
-
-const GlobalStyle = createGlobalStyle`
-    body{
-      background-color: black; 
-      color:white;
-    }
-    `
-
+export default App;
