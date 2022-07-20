@@ -154,6 +154,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activesupport (~> 6.1)
   bcrypt (~> 3.1.7)
   byebug
   listen (~> 3.3)

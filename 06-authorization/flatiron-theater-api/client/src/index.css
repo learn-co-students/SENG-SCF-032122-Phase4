@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(./assets/background.jpg);
 }
 
 code {
@@ -30,7 +31,7 @@ code {
   align-items: center;
   width: 350px;
   border-radius: 8px;
-  background-color: rgb(201, 243, 229);
+  background: linear-gradient(0deg, rgba(162,194,183,1) 0%, rgba(201,243,229,1) 100%);
   padding: 15px;
   margin: 20px;
   -webkit-box-shadow: -8px 4px 13px 0px #000000; 

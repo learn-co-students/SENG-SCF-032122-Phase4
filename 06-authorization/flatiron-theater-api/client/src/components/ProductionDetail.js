@@ -20,7 +20,7 @@ const [production, setProduction] = useState({crew_members:[], performers_and_ro
       <h1>{title}</h1>
        <h3>{genre}</h3>
        <h3>{budget}</h3>
-       <img style={{width:'100px'}} src={image}/>
+       <img style={{width:'100px'}} src={image} alt="theatre poster"/>
        <p>{description}</p>
        <button >Buy Ticket</button>
       </div>

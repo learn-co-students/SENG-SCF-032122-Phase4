@@ -34,6 +34,7 @@ function App() {
           });
         })
       }
+      else alert("you are not logged in please try again")
     });
 
    
