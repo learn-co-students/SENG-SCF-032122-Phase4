@@ -2,16 +2,13 @@ import {Link} from "react-router-dom";
 
 function ProductionCard({production}) {
     const {title, budget, genre, image, id} = production
-    console.log(production)
     return (
-      <Link to={`/productions/${id}`}>
-      <tr className="table-row" >
-       <td>{title}</td>
-       <td>{genre}</td>
-       <td>$ {budget}</td>
-       <td><img style={{width:'100px'}} src={image}/></td>
-      </tr>
-      </Link>
+      <div className="card">
+       <h4>{title}</h4>
+       <img style={{width:'100px'}} src={image}/>
+       <i>{genre}</i>
+       <h5>{budget}</h5>
+      </div>
     );
   }
   

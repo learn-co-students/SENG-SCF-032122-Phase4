@@ -30,7 +30,6 @@ function App() {
           fetch('/productions')
           .then(res => res.json())
           .then(productions => {
-            console.log(productions)
             setProductions(productions)
           });
         })

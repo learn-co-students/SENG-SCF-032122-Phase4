@@ -14,10 +14,10 @@ function Navigation({cart, setIsAuthenticated, setUser, user}) {
     return (
         <> 
    
+         <div className="nav">
          <h1>Flatiron Theater Company</h1>
-         <div>
             <button onClick={logout}>Logout</button>
-           <h1><Link to="/"> Home</Link></h1>
+           {/* <h1><Link to="/"> Home</Link></h1> */}
            {user&&user.admin?<h1><Link to="/productions/new">New Production</Link></h1>:null}
 
          </div>

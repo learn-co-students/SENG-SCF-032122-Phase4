@@ -28,6 +28,8 @@ function Login({setUser,setIsAuthenticated}) {
             .then(user=>{
               setUser(user)
               setIsAuthenticated(true)
+              history.push("/")
+              // this will not show the production cards because we have to fetch to get them. hit refresh and cards will appear!
             })
             
           } else {
@@ -38,26 +40,26 @@ function Login({setUser,setIsAuthenticated}) {
     }
     return (
       
-        <> 
+      <div className='login'> 
         <h1>Flatiron Theater Company</h1>
-        <h1>Login</h1>
         <form onSubmit={onSubmit}>
-        <label>
+        <fieldset>
+          <legend>Login</legend>
+        <label htmlFor="username">
           Username
-   
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
-        <label>
+          <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <label htmlFor="password">
          Password
-    
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
+        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
        
         <input type="submit" value="Login!" />
+      </fieldset>
       </form>
       {error?<div>{error}</div>:null}
       <Auth />
-        </>
+        </div>
     )
 }
 
