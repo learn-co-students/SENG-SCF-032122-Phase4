@@ -23,6 +23,7 @@ function Auth() {
         .then(res => res.json())
         .then(json => {
             if(json.errors) setErrors(Object.entries(json.errors))
+            else alert("Thanks for logging in, please refresh the page to check out the sessions magic :)")
         })
     }
     return (
@@ -30,18 +31,18 @@ function Auth() {
       <form onSubmit={onSubmit}>
       <fieldset>
       <legend>Sign UP</legend>
-      <label htmlFor="username">
+      <label htmlFor="username1">
         Username
       </label>
-        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <label htmlFor="email">
+        <input type="text" id="username1" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <label htmlFor="email1">
        Email
       </label>
-      <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <label htmlFor="password">
+      <input type="text" id="email1" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <label htmlFor="password1">
        Password
       </label>
-      <input type="password" id="password"value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="password" id="password1"value={password} onChange={(e) => setPassword(e.target.value)} />
      
       <input type="submit" value="Sign up!" />
       </fieldset>

@@ -5,10 +5,10 @@ class ProductionSerializer < ActiveModel::Serializer
   has_many :users
 
   def budget
-    "$#{'%.2f' % object.budget}"
+    object.budget.to_s(:currency)
   end 
 
   def ongoing
-    object.ongoing ? "Activley Showing" : "No Showing"
+    object.ongoing ? "Actively Showing" : "Not Showing"
   end 
 end

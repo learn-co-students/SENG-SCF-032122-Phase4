@@ -1,11 +1,10 @@
-import {Link} from "react-router-dom";
 
 function ProductionCard({production}) {
     const {title, budget, genre, image, id} = production
     return (
       <div className="card">
        <h4>{title}</h4>
-       <img style={{width:'100px'}} src={image}/>
+       <img style={{width:'100px'}} alt="theatre poster" src={image}/>
        <i>{genre}</i>
        <h5>{budget}</h5>
       </div>
