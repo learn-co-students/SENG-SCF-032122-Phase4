@@ -4,6 +4,7 @@ function Auth() {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
    
     const [errors, setErrors] = useState([])
 
@@ -12,7 +13,8 @@ function Auth() {
         const user = {
             name: username,
             email,
-            password
+            password,
+            password_confirmation: passwordConfirmation
         }
        
         fetch(`/users`,{
@@ -43,6 +45,11 @@ function Auth() {
        Password
       </label>
       <input type="password" id="password1"value={password} onChange={(e) => setPassword(e.target.value)} />
+
+      <label htmlFor="password2">
+       Confirm Password
+      </label>
+      <input type="password" id="password2"value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
      
       <input type="submit" value="Sign up!" />
       </fieldset>
