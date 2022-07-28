@@ -43,6 +43,8 @@ brew services start postgresql
 
 ### Hosting a Rails App
 
+Because we are working inside a subdirectory that already has an outer git repository, we need to initiate a new git repository *inside of our flatiron-theater-api directory* so we can push these commits to Heroku. We do this using `git init`
+
 To deploy a Rails / React app, we need to make sure the app is using PostgreSQL. 
 
 ```
