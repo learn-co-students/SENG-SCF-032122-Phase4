@@ -12,5 +12,4 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#logout'
 
   # Configure Client Side Routing (Redirect Client Routes to index.html)
-  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
